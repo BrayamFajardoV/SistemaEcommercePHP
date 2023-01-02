@@ -1,0 +1,203 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 02-01-2023 a las 09:41:25
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `sistemaecommerce`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `Id` int(11) NOT NULL,
+  `NombreCategoria` varchar(100) NOT NULL,
+  `Estado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`Id`, `NombreCategoria`, `Estado`) VALUES
+(1, 'Bebidas', 0),
+(2, 'Reposteria', 1),
+(3, 'Teléfonos', 1),
+(4, 'Computadores', 1),
+(5, 'Servicios', 0),
+(7, 'Televisores', 0),
+(8, 'Celulares', 1),
+(9, 'Tapiceria', 1),
+(13, 'Hogar', 0),
+(14, 'Gamer', 1),
+(15, 'Jugueteria', 1),
+(16, 'Cigarreria', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `marcas`
+--
+
+CREATE TABLE `marcas` (
+  `Id` int(11) NOT NULL,
+  `NombreMarca` varchar(100) NOT NULL,
+  `Estado` tinyint(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `marcas`
+--
+
+INSERT INTO `marcas` (`Id`, `NombreMarca`, `Estado`) VALUES
+(2, 'Samsumg ', 1),
+(3, 'Coca-Cola', 1),
+(5, 'Bimbo', 1),
+(8, 'Hasbroo', 1),
+(9, 'Malboro', 0),
+(10, 'Redmi ', 1),
+(11, 'Ubisoft', 1),
+(12, 'Hyundai', 1),
+(13, 'HP', 1),
+(14, '7Up', 0),
+(15, 'Oreo', 1),
+(16, 'Adidas', 1),
+(17, 'Uber', 0),
+(18, 'Wish', 0),
+(19, 'Nintendo', 1),
+(20, 'PlayStation', 1),
+(21, 'Microsoft', 1),
+(22, 'Apple', 0),
+(23, 'Gucci', 1),
+(24, 'LG', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE `productos` (
+  `IdProducto` int(11) NOT NULL,
+  `CategoriaId` int(11) NOT NULL,
+  `MarcaId` int(11) NOT NULL,
+  `Precio` varchar(200) NOT NULL,
+  `DescripcionProducto` varchar(500) NOT NULL,
+  `Nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`IdProducto`, `CategoriaId`, `MarcaId`, `Precio`, `DescripcionProducto`, `Nombre`) VALUES
+(6, 4, 2, '$5.800.000', 'Computador SAMSUMG I7', 'COMPUTADOR SAMSUMG');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `Id` int(11) NOT NULL,
+  `NombreCompleto` varchar(255) NOT NULL,
+  `NombreUsuario` varchar(255) NOT NULL,
+  `Clave` varchar(255) NOT NULL,
+  `Correo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`Id`, `NombreCompleto`, `NombreUsuario`, `Clave`, `Correo`) VALUES
+(1, 'Brayam Fajardo Velasquez', 'Brayam10', '$2y$10$O0wtMYfSbKln7bZwD95wOeGJG5kcOZLGhqszmLY1QOfpr6j8tyuH6', 'Brayamfajardo23@gmail.com'),
+(2, 'Silvana Patricia Barandica Lopez', 'Silvana10', '$2y$10$OYP1YplXjFc.TDG0GYozSOQGD.MXw/9cj3HPQOpeVIoOj4KmLWcNy', 'Silvanapatricia10@gmail.com'),
+(3, 'Natalia Castellanos', 'Natalia Catellanos', '$2y$10$br3qrRDCbMQJadyWfx/CneHf8OAauugrCR8/rIoOOm7EcWcEHoaSa', 'NatC02@gmail.com'),
+(4, 'Michael Stick', 'Michael Stick', '$2y$10$jlY1jj5r5EteJ9iwHvHXzOEk5m1/3HUfuQSj4620CbVc.j6xn2U1K', 'MichaelStick@gmail.com'),
+(5, 'Omar alvarez', 'Omar10', '$2y$10$B4blBIQy8zrMp1Uo2RG08uLvyLgprOaCj7CdUIzv98bdvoW//VCfO', 'OAlvarez@gmail.com');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id` (`Id`);
+
+--
+-- Indices de la tabla `marcas`
+--
+ALTER TABLE `marcas`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id` (`Id`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`IdProducto`),
+  ADD KEY `MarcaId` (`MarcaId`),
+  ADD KEY `CategoriaId` (`CategoriaId`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `marcas`
+--
+ALTER TABLE `marcas`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `IdProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`CategoriaId`) REFERENCES `categorias` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `productos_ibfk_3` FOREIGN KEY (`MarcaId`) REFERENCES `marcas` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
